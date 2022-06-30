@@ -390,6 +390,11 @@ extension SolanaSDK.Transaction {
             case signature, publicKey
         }
         
+        public init(signature: Data?, publicKey: SolanaSDK.PublicKey) {
+            self.signature = signature
+            self.publicKey = publicKey
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(Base58.encode((signature?.bytes ?? [])), forKey: .signature)
